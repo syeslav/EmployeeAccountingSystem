@@ -2,37 +2,30 @@ package service;
 
 import model.Department;
 import model.Employee;
+import model.Organization;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class OrganizationService {
-    private List<Department> departments;
-    private List<Employee> employees;
+    private Organization organization;
 
     public OrganizationService() {
-        this.departments = new ArrayList<>();
-        this.employees = new ArrayList<>();
+        this.organization = new Organization();
     }
 
     public void addDepartment(Department department) {
-        departments.add(department);
+        organization.addDepartment(department);
     }
 
     public void addEmployee(Employee employee) {
-        employees.add(employee);
-        if (employee.getDepartment() != null) {
-            employee.getDepartment().addEmployee(employee);
-        }
+        organization.addEmployee(employee);
     }
 
     public boolean removeEmployee(UUID employeeId) {
-        for (Employee employee : employees) {
+        for (Employee employee : organization.getEmployees()) {
             if (employee.getId().equals(employeeId)) {
-                employees.remove(employee);
-                if (employee.getDepartment() != null) {
-                    employee.getDepartment().removeEmployee(employee);
-                }
+                organization.removeEmployee(employee);
                 return true;
             }
         }
@@ -40,7 +33,7 @@ public class OrganizationService {
     }
 
     public Employee findEmployeeByName(String fullName) {
-        for (Employee employee : employees) {
+        for (Employee employee : organization.getEmployees()) {
             if (employee.getFullName().equalsIgnoreCase(fullName)) {
                 return employee;
             }
@@ -50,7 +43,7 @@ public class OrganizationService {
 
     public List<Employee> getEmployeesByDepartment(String departmentName) {
         List<Employee> result = new ArrayList<>();
-        for (Employee employee : employees) {
+        for (Employee employee : organization.getEmployees()) {
             if (employee.getDepartment() != null &&
                     employee.getDepartment().getName().equalsIgnoreCase(departmentName)) {
                 result.add(employee);
@@ -59,11 +52,7 @@ public class OrganizationService {
         return result;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public List<Department> getDepartments() {
-        return departments;
+    public Organization getOrganization() {
+        return organization;
     }
 }

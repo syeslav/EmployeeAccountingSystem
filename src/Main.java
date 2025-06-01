@@ -1,5 +1,6 @@
 import model.Department;
 import model.Employee;
+import model.Organization;
 import service.OrganizationService;
 import service.StorageService;
 import ui.ConsoleUI;
@@ -9,12 +10,22 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        OrganizationService orgService = new OrganizationService();
+        OrganizationService orgService = new OrganizationService(); // Исправлено
+        Organization organization = orgService.getOrganization(); // Получаем объект Organization
 
         // Загрузка данных из файла, если он существует
         File file = new File("organization.dat");
         if (file.exists()) {
-            orgService = StorageService.loadOrganization("organization.dat");
+            organization = StorageService.loadOrganization("organization.dat");
+            if (organization != null) {
+                orgService = new OrganizationService();
+                for (Department department : organization.getDepartments()) {
+                    orgService.addDepartment(department);
+                }
+                for (Employee employee : organization.getEmployees()) {
+                    orgService.addEmployee(employee);
+                }
+            }
         } else {
             // Создание тестовых данных при первом запуске
             Department itDepartment = new Department("IT");
@@ -28,6 +39,6 @@ public class Main {
         consoleUI.start();
 
         // Сохранение данных перед выходом
-        StorageService.saveOrganization(orgService, "organization.dat");
+        StorageService.saveOrganization(organization, "organization.dat");
     }
 }

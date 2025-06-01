@@ -12,9 +12,9 @@ public class Employee implements Serializable {
     private String phone;           // контактный телефон
     private String position;        // должность
     private Department department;  // отдел
-    private Employee manager;        // начальник
+    private Employee manager;       // начальник
     private LocalDate hireDate;     // дата приема на работу
-    private  double salary;         // зарплата
+    private double salary;          // зарплата
 
     public Employee(String fullName, LocalDate birthDate, String gender, String phone,
                     String position, Department department, Employee manager,
@@ -32,7 +32,7 @@ public class Employee implements Serializable {
     }
 
     // Getters and setters
-    public UUID getId() { return id; }
+    public UUID getId() { return id; } // Исправлено
     public String getFullName() { return fullName; }
     public LocalDate getBirthDate() { return birthDate; }
     public String getGender() { return gender; }
@@ -49,13 +49,19 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Employee{id=%s, fullName='%s', birthDate=%s, gender='%s', " +
-                        "phone='%s', position='%s', department='%s', manager='%s', " +
-                        "hireDate=%s, salary=%.2f}",
+        return String.format("""
+                        id=%s\s
+                        fullName='%s'\s
+                        birthDate=%s\s
+                        gender='%s', \
+                        phone='%s'\s
+                        position='%s'\s
+                        department='%s'\s
+                        manager='%s', \
+                        hireDate=%s\s
+                        salary=%.2f""",
                 id, fullName, birthDate, gender, phone, position,
                 department != null ? department.getName() : "None",
                 manager != null ? manager.getFullName() : "None", hireDate, salary);
     }
 }
-
-

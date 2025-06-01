@@ -1,19 +1,20 @@
 package ui;
 
-import service.OrganizationService;
+import model.Organization;
 import model.Employee;
 import model.Department;
+import service.OrganizationService;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUI {
-    private OrganizationService organizationService;
+    private OrganizationService organizationService; // Исправлено тип
     private Scanner scanner = new Scanner(System.in);
 
     public ConsoleUI(OrganizationService organizationService) {
-        this.organizationService = organizationService;
+        this.organizationService = organizationService; // Исправлено тип
     }
 
     public void start() {
@@ -88,7 +89,7 @@ public class ConsoleUI {
     }
 
     private Department findOrCreateDepartment(String departmentName) {
-        for (Department department : organizationService.getDepartments()) {
+        for (Department department : organizationService.getOrganization().getDepartments()) {
             if (department.getName().equalsIgnoreCase(departmentName)) {
                 return department;
             }
@@ -99,7 +100,7 @@ public class ConsoleUI {
     }
 
     private void showDepartments() {
-        List<Department> departments = organizationService.getDepartments();
+        List<Department> departments = organizationService.getOrganization().getDepartments();
         for (Department department : departments) {
             System.out.println(department);
         }
