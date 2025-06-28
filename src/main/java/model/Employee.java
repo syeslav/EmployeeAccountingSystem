@@ -4,22 +4,21 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
-//  Клас для хранения информации о сотруднике.
 
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String fullName;        // ФИО сотрудника.
-    private LocalDate birthDate;    // Дата рождения.
-    private String gender;          // Пол.
-    private String phone;           // Контактный телефон.
-    private String position;        // Должность.
-    private String departmentName;  // Название отдела.
-    private String managerFullName; // ФИО начальника.
-    private LocalDate hireDate;     // Дата приема на работу.
-    private double salary;          // Зарплата.
+    private String fullName;
+    private LocalDate birthDate;
+    private String gender;
+    private String phone;
+    private String position;
+    private String departmentName;
+    private String managerFullName;
+    private LocalDate hireDate;
+    private double salary;
 
-    // Конструктор
+
     public Employee(String fullName, LocalDate birthDate, String gender, String phone, String position,
                     String departmentName, String managerFullName, LocalDate hireDate, double salary) {
         this.fullName = fullName;
@@ -34,7 +33,6 @@ public class Employee implements Serializable {
     }
 
 
-    // Геттеры
     public String fullName() {
         return fullName;
     }
@@ -63,7 +61,7 @@ public class Employee implements Serializable {
         return salary;
     }
 
-    // Сеттеры
+
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }

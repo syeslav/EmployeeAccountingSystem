@@ -2,21 +2,19 @@ package model;
 
 import java.io.Serializable;
 
-//  Класс для хранения информации об отдел.
 
 public class Department implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String name;                // Название отдела. Должно быть уникальным.
-    private String managerFullName;     // ФИО начальника отдела
+    private String name;
+    private String managerFullName;
 
-    // Конструктор
     public Department(String name, String managerFullName) {
         this.name = name;
         this.managerFullName = managerFullName;
     }
 
-    // Геттеры
+
     public String name() {
         return name;
     }
@@ -24,7 +22,7 @@ public class Department implements Serializable {
         return managerFullName;
     }
 
-    // Сеттеры
+
     public void setName(String name) {
         this.name = name;
     }
